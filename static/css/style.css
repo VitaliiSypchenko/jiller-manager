@@ -1,0 +1,18 @@
+a.toll-btn {
+    color: #777777;
+    font-size: 20px;
+    padding: 10px 15px;
+}
+
+a.toll-btn:hover {
+    color: #393939;
+    font-size: 20px;
+    padding: 10px 15px;
+    background-color: #ccc;
+    border-radius: 2px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+ul.errorlist li{
+    color: #dd5a43
+}

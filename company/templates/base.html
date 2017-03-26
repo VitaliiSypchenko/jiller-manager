@@ -1,0 +1,65 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <meta charset="utf-8"/>
+  <meta name="description" content="Jiller manager"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+  <title>Jiller | {% block title %}{% endblock %}</title>
+
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/>
+
+  {# Block where global CSS will go. #}
+  {% block styles %}
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" href='{% static 'css/bootstrap.css' %}'
+          type='text/css'/>
+    <link rel="stylesheet" href="{% static 'css/font-awesome.css' %}"
+          type='text/css'/>
+    <!-- text fonts -->
+    <link rel="stylesheet" href="{% static 'css/ace-fonts.css' %}"
+          type='text/css'/>
+    <!-- ace styles -->
+    <link href='{% static "css/ace.css" %}' rel='stylesheet' type='text/css'
+          class="ace-main-stylesheet"
+          id="main-ace-style"/>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% endblock %}
+</head>
+
+<body class="login-layout light-login">
+<div class="main-container">
+  <div class="main-content">
+    <div class="row">
+      <div class="col-sm-12">
+
+        <div class="col-sm-6">
+          <h1>
+            <i class="ace-icon fa  fa-lightbulb-o orange"> </i>
+            <span class="grey">Jiller</span>
+          </h1>
+        </div>
+        <div class="col-sm-6 text-right">
+          <div style='margin-top:20px' class="btn-group">
+            <a href="." class="toll-btn">Price</a>
+            <a href="." class="toll-btn">Support</a>
+            <a href="." class="toll-btn">Product</a>
+          </div>
+        </div>
+        <div class="space-6"></div>
+            {% block content %}{% endblock %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% block scripts %}
+  <script src="{% static 'js/jquery.js' %}"></script>
+{% endblock %}
+</body>
+</html>

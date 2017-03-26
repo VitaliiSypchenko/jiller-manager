@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="space-32"></div>
+      <div class="col-sm-6 col-sm-offset-1">
+        <strong><span style="font-size: 60px">How to organize a workflow?</span> </strong>
+        <i style=" position: relative; top: -30px; font-size: 20px;" class="ace-icon fa fa-asterisk red"></i>
+        <br>
+        <i style=" position: relative; top: -8px;" class="ace-icon fa fa-asterisk red"></i>
+        <span style="font-size: 25px">
+          One tool is enough. Using <strong>Jiller</strong> every
+          member of your team could easily plan, track
+          and estimate a work process.
+        </span>
+      </div>
+      <div class="col-sm-4">
+        <div id="login-box" style="top:50px" class="login-box visible widget-box no-border">
+          <div class="widget-body">
+            <div class="widget-main">
+              <h4 class="header blue lighter bigger text-center">
+                Register your company in one click
+              </h4>
+              <div class="space-6"></div>
+              <form action="{% url 'home' %}" method='post'>
+                {% csrf_token %}
+                <div class="input-group">
+                  {{ form.name }}
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-sm btn-primary">
+                      <i class="ace-icon fa fa-lightbulb-o"></i>
+                      <span class="bigger-110">Go!</span>
+                    </button>
+                  </span>
+                </div>
+                <div class="clearfix"></div>
+              </form>
+              {% if form.errors %}
+                  <p class="danger">{{ form.name.errors }}</p>
+              {% endif %}
+              <div class="space-18"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
