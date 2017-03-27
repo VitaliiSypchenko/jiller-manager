@@ -24,7 +24,7 @@
                 Register your company in one click
               </h4>
               <div class="space-6"></div>
-              <form action="{% url 'home' %}" method='post'>
+              <form action="{% url 'payment:process' %}" method='post'>
                 {% csrf_token %}
                 <div class="input-group">
                   {% for field in form %}
@@ -37,9 +37,9 @@
                     <i class="ace-icon fa fa-lightbulb-o"></i>
                     <span class="bigger-110">PayPal</span>
                   </button>
-                  <button type="submit" class="btn btn-primary">
-                    <span class="bigger-110">Yandex</span>
-                  </button>
+{#                  <button type="submit" class="btn btn-primary">#}
+{#                    <span class="bigger-110">Yandex</span>#}
+{#                  </button>#}
                 </div>
               </form>
               {% if form.errors %}

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'company',
     'paypal.standard.ipn',
+    'payment',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -124,6 +125,7 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # to use PAYPAL sandbox
 PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = 'colonialist@ukr.net'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/

@@ -1,7 +1,7 @@
-from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from company.forms import CreateCompanyForm
+from django.core.urlresolvers import reverse
 
 
 def home_view(request):
