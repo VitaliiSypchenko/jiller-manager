@@ -1,10 +1,7 @@
-import re
-
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from company.forms import CreateCompanyForm
-from company.models import Company
 
 
 def home_view(request):
@@ -21,6 +18,4 @@ def home_view(request):
             f.write(data)
             f.close()
             return redirect(reverse('home'))
-
-
     return render(request, 'home.html', {'form': form,})

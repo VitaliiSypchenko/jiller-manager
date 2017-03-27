@@ -7,9 +7,9 @@ services:
   web:
     restart: always
     image: python:2.7
-    command: !!some_command!!
+    command: gunicorn jiller_manager.wsgi
     environment:
-     - DJANGO_SETTINGS_MODULE=jiller_manager.settings
+     - DJANGO_SETTINGS_MODULE={{name}}.settings
     volumes:
       - .:/{{name}}
     ports:
