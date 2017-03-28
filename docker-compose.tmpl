@@ -1,0 +1,52 @@
+version: '2'
+
+services:
+  # PostgreSQL database
+  db_{name}:
+    image: postgres:9.4
+    container_name: db_{name}
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    expose:
+      - 5234
+
+  web_{name}:
+    image: jiller/jiller-instance:latest
+    container_name: web_{name}
+    command: ./run_web.sh
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+    expose:
+      - 8000
+    depends_on:
+      - db_{name}
+    environment:
+      - VIRTUAL_HOST=www.{name}.jiller.loc,{name}.jiller.loc
+      - POSTGRES_HOST=db_{name}
+      - REDIS_HOST=redis_{name}
+    networks:
+     - nginx-proxy
+     - default
+
+
+  redis_{name}:
+    image: redis:latest
+    container_name: redis_{name}
+    expose:
+     - 6379
+
+  celery_{name}:
+    image: jiller/jiller-instance:latest
+    container_name: celery_{name}
+    command: ./run_celery.sh
+    environment:
+      - POSTGRES_HOST=db_{name}
+      - REDIS_HOST=redis_{name}
+
+networks:
+  nginx-proxy:
+     external:
+       name: nginx-proxy

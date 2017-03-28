@@ -1,24 +1,32 @@
 version: '2'
 services:
-  nginx:
-    restart: always
-    build: ./nginx/
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
     ports:
-      - "8080:80"
-    expose:
-      - "80"
-    volumes_from:
-      - web
-
-  web:
-    restart: always
-    image: python:2.7
-    command: run.sh
-    environment:
-      - DJANGO_SETTINGS_MODULE=jiller_manager.settings
+      - "80:80"
     volumes:
-      - .:/jiller_manager
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    networks:
+     - nginx-proxy
+     - default
+
+
+
+  master:
+    image: jiller/jiller-manager
+    command: ./run.sh
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /usr/bin/docker:/usr/bin/docker
+    environment:
+      - VIRTUAL_HOST=www.jiller.loc,jiller.loc
+    expose:
+      - 8000
+ 
+
+
+networks:
+  nginx-proxy:
+     external:
+       name: nginx-proxy

@@ -25,7 +25,7 @@ SECRET_KEY = '$hslqb$o(_e#nx&97%w*hbayes@a04^7p627ap137o^so=!6hs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.jiller.loc']
 
 
 # Application definition
