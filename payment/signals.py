@@ -8,6 +8,7 @@ import json
 def payment_notification(sender, **kwargs):
     ipn_obj = sender
     if ipn_obj.payment_status == ST_PP_COMPLETED:
+        sender.session['payment_status'] = True
         data = json.loads(ipn_obj.custom)
         form = CreateCompanyForm(data)
         form.save(commit=False)

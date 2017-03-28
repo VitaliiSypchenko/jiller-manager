@@ -42,6 +42,8 @@ def payment_process(request):
 
 @csrf_exempt
 def payment_done(request):
+    print request.session.get('payment_status')
+    print request.session.get('company')
     company = request.session.get('company')
     try:
         current_company = Company.objects.get(name=company)
