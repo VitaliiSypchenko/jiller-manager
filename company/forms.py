@@ -10,12 +10,12 @@ class CreateCompanyForm(forms.ModelForm):
         for field_name, field in self.fields.items():
             field.widget.attrs.update({'class': 'form-control',
                                        'placeholder': field.label})
+
     def clean_name(self):
         cleaned_data = super(CreateCompanyForm, self).clean()
         name = cleaned_data.get('name')
         if not name.isalpha():
-            raise forms.ValidationError(
-                'Only letters are allowed')
+            raise forms.ValidationError('Only letters are allowed')
         return name
 
     class Meta:
