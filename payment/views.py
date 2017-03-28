@@ -15,21 +15,20 @@ def payment_process(request):
         form = CreateCompanyForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name'].lower()
-            form.save(commit=False)
-            form.name = name
-            form.save()
-
-            request.session['company'] = name
+            admin_name = form.cleaned_data['admin_name']
+            admin_pass = form.cleaned_data['admin_pass']
 
             paypal_dict = {
                 'business': settings.PAYPAL_RECEIVER_EMAIL,
                 'amount': '15',
-                'item_name': 'Company {}'.format('jiller'),
-                'invoice': 'jiller',
-                # 'currency_code': 'RUB',
+                'item_name': 'jiller',
+                'invoice': name,
                 'notify_url': 'http://{}{}'.format(host, reverse('paypal-ipn')),
                 'return_url': 'http://{}{}'.format(host, reverse('payment:done')),
-                'cancel_return': 'http://{}{}'.format(host, reverse('payment:canceled'))
+                'cancel_return': 'http://{}{}'.format(host, reverse('payment:canceled')),
+                'custom': "{" + "\"name\": \"" + name + "\"," +
+                          "\"admin_name\": \"" + admin_name + "\"," +
+                          "\"admin_pass\": \"" + admin_pass + "\"}"
             }
 
             form = PayPalPaymentsForm(initial=paypal_dict)

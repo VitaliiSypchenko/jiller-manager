@@ -3,6 +3,31 @@
 {% block title %}Оплата PayPal{% endblock %}
 
 {% block content %}
-  <h1>Оплата PayPal</h1>
-  {{ form.render }}
+  <div class="col-sm-10 col-sm-offset-1">
+    <div class="login-container">
+      <div class="space-6"></div>
+      <div class="position-relative">
+        <div class="login-box visible widget-box no-border">
+          <div class="widget-body">
+            <div class="widget-main">
+              <h4 class="header blue lighter bigger text-center">
+                PayPal payment
+              </h4>
+
+              <div class="center blue">
+                <h5>You want to purchase Jiller.</h5>
+                <h5>Press 'Buy Now' to do it.</h5>
+
+                <div class="space-6"></div>
+
+                {{ form.render }}
+              </div>
+
+              <div class="space-6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 {% endblock %}

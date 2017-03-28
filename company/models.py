@@ -7,3 +7,5 @@ class Company(models.Model):
     admin_name = models.CharField(verbose_name=_('Admin name'), max_length=20)
     admin_pass = models.CharField(verbose_name=_('Admin password'), max_length=20)
 
+    def __str__(self):
+        return self.name
