@@ -1,10 +1,11 @@
 import json
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from paypal.standard.forms import PayPalPaymentsForm
 from company.forms import CreateCompanyForm
+from company.models import Company
 
 
 def payment_process(request):
@@ -31,33 +32,23 @@ def payment_process(request):
                           "\"admin_pass\": \"" + admin_pass + "\"}"
             }
 
+            request.session['company'] = name
+
             form = PayPalPaymentsForm(initial=paypal_dict)
             return render(request, 'payment/process.html', {'form':form})
 
-    return render(request, 'home.html', {'form': form,})
-
-
-def paypal_payment_successful(sender, **kwargs):
-    #Called when the payment is sucessful
-    ipn_obj = sender
-    user_id = ipn_obj.custom
-
-    if ipn_obj.payment_status == "Completed":
-        try:
-            user_profile = models.UserProfile.objects.get(user=user_id)
-            user_profile.account_balance += float(ipn_obj.mc_gross)
-            user_profile.save()
-
-        except models.UserProfile.DoesNotExist:
-            pass # TODO email admin
+    return render(request, 'home.html', {'form': form})
 
 
 @csrf_exempt
-def payment_done(sender, **kwargs):
-    ipn_obj = sender
-    data = json.loads(ipn_obj.custom)
+def payment_done(request):
+    company = request.session.get('company')
+    try:
+        current_company = Company.objects.get(name=company)
+    except Company.DoesNotExist:
+        return render(request, 'payment/done.html')
 
-    return render(sender, 'payment/done.html', {'data': data})
+    return render(request, 'payment/done.html', {'company': current_company})
 
 
 @csrf_exempt

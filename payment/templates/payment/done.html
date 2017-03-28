@@ -16,12 +16,17 @@
               </h4>
 
               <div class="center blue">
-                <h5>Jiller fo your company will be available at link within a few minutes</h5>
-                <h5>name, password</h5>
-
-                <div class="space-6"></div>
-
-                {{ data }}
+                {% if company %}
+                <h5>Jiller fo your company will be available at
+                    <a class="orange" href="{{ company.name }}">{{ company.name }}.jiller.loc</a> within a few minutes</h5>
+                <div class="align-left">
+                  <div class="space-6"></div>
+                  <h5>Admin name: {{ company.admin_name }}</h5>
+                  <h5>Admin password: {{ company.admin_pass }}</h5>
+                </div>
+                {% else %}
+                  <h5>Your company is creating!</h5>
+                {% endif %}
               </div>
 
               <div class="space-6"></div>
@@ -31,8 +36,13 @@
 
             <div class="pull-right width-30">
               <a href="{% url 'home' %}" class="user-signup-link">
+                {%  if company %}
                 <i class="ace-icon fa fa-arrow-left"></i>
                 Home
+                {% else %}
+                  Update info
+                  <i class="ace-icon fa fa-upload"></i>
+                {% endif %}
               </a>
             </div>
 
