@@ -5,7 +5,7 @@ from django.contrib.auth.hashers import make_password
 import json
 
 
-def PaymentNotification(sender, **kwargs):
+def payment_notification(sender, **kwargs):
     ipn_obj = sender
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         data = json.loads(ipn_obj.custom)
@@ -14,4 +14,4 @@ def PaymentNotification(sender, **kwargs):
         form.admin_pass = make_password(data.get('admin_pass'))
         form.save()
 
-valid_ipn_received.connect(PaymentNotification)
+valid_ipn_received.connect(payment_notification)
