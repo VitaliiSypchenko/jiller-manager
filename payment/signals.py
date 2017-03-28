@@ -11,6 +11,7 @@ from company.models import Company
 def payment_notification(sender, **kwargs):
     ipn_obj = sender
     if ipn_obj.payment_status == ST_PP_COMPLETED:
+        sender.session['payment_status'] = True
         data = json.loads(ipn_obj.custom)
         company, created = Company.objects.get_or_create(
             name=data['name'], admin_name=data['admin_name'], admin_pass=data['admin_pass']
