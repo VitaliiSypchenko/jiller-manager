@@ -8,8 +8,8 @@ class CreateCompanyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CreateCompanyForm, self).__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'form-control'})
-
+            field.widget.attrs.update({'class': 'form-control',
+                                       'placeholder': field.label})
     def clean_name(self):
         cleaned_data = super(CreateCompanyForm, self).clean()
         name = cleaned_data.get('name')
@@ -20,6 +20,9 @@ class CreateCompanyForm(forms.ModelForm):
 
     class Meta:
         model = Company
-        fields = ['name']
+        fields = '__all__'
+        widgets = {
+            'admin_pass': forms.PasswordInput(),
+        }
 
 
