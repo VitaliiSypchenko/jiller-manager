@@ -13,9 +13,8 @@ def home_view(request):
             form.save(commit=False)
             form.name = name
             form.save()
-            f = open('compose_files/{}_docker_compose.yml'.format(name), 'w+')
-            data = render_to_string('docker_compose_standard.yml', {'name': name})
-            f.write(data)
-            f.close()
+            with open('compose_files/{}_docker_compose.yml'.format(name), 'w+') as file:
+                data = render_to_string('docker-compose.tmpl', {'name': name})
+                file.write(data)
             return redirect(reverse('home'))
     return render(request, 'home.html', {'form': form,})
