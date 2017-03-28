@@ -17,8 +17,8 @@
 
               <div class="center blue">
                 {% if company %}
-                <h5>Jiller fo your company will be available at
-                    <a class="orange" href="{{ company.name }}">{{ company.name }}.jiller.loc</a> within a few minutes</h5>
+                <h5>Jiller for your company will be available at
+                    <a class="orange" href="http://{{ company.name }}.jiller.log">{{ company.name }}.jiller.loc</a> within a few minutes</h5>
                 <div class="align-left">
                   <div class="space-6"></div>
                   <h5>Admin name: {{ company.admin_name }}</h5>
@@ -34,14 +34,14 @@
 
             <div class="toolbar clearfix">
 
-            <div class="pull-right width-30">
-              <a href="{% url 'home' %}" class="user-signup-link">
+            <div class="pull-right width-40">
+              <a href="{% url 'payment:done' %}" class="user-signup-link">
                 {%  if company %}
                 <i class="ace-icon fa fa-arrow-left"></i>
                 Home
                 {% else %}
                   Update info
-                  <i class="ace-icon fa fa-upload"></i>
+                  <i class="ace-icon fa fa-refresh"></i>
                 {% endif %}
               </a>
             </div>
