@@ -25,7 +25,7 @@ SECRET_KEY = '$hslqb$o(_e#nx&97%w*hbayes@a04^7p627ap137o^so=!6hs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['90c66a44.ngrok.io', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'company'
+    'company',
+    'paypal.standard.ipn',
+    'payment',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -120,6 +122,10 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join('../static')
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+# to use PAYPAL sandbox
+PAYPAL_TEST = True
+PAYPAL_RECEIVER_EMAIL = 'colonialist@ukr.net'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/

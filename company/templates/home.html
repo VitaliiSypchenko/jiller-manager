@@ -24,18 +24,23 @@
                 Register your company in one click
               </h4>
               <div class="space-6"></div>
-              <form action="{% url 'home' %}" method='post'>
+              <form action="{% url 'payment:process' %}" method='post'>
                 {% csrf_token %}
                 <div class="input-group">
-                  {{ form.name }}
-                  <span class="input-group-btn">
-                    <button type="submit" class="btn btn-sm btn-primary">
-                      <i class="ace-icon fa fa-lightbulb-o"></i>
-                      <span class="bigger-110">Go!</span>
-                    </button>
-                  </span>
+                  {% for field in form %}
+                    {{ field }}
+                  {% endfor %}
                 </div>
-                <div class="clearfix"></div>
+                <div class="space"></div>
+                <div class="center group-btn">
+                  <button type="submit" class="btn btn-primary">
+                    <i class="ace-icon fa fa-lightbulb-o"></i>
+                    <span class="bigger-110">PayPal</span>
+                  </button>
+{#                  <button type="submit" class="btn btn-primary">#}
+{#                    <span class="bigger-110">Yandex</span>#}
+{#                  </button>#}
+                </div>
               </form>
               {% if form.errors %}
                   <p class="danger">{{ form.name.errors }}</p>
