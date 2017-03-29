@@ -26,6 +26,7 @@ def home_view(request):
                           "\"admin_name\": \"" + admin_name + "\"," +
                           "\"admin_pass\": \"" + admin_pass + "\"}"
             }
+            request.session['company'] = name
             form = PayPalPaymentsForm(initial=paypal_dict)
             return render(request, 'payment/process.html', {'form':form})
     return render(request, 'home.html', {'form': form,})
