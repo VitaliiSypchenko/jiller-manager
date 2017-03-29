@@ -13,8 +13,6 @@ AUTH_TOKEN = "1770400f1d504900d614bb38ac97f7fd"
 
 client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
 
-
-
 def payment_notification(sender, **kwargs):
     ipn_obj = sender
     if ipn_obj.payment_status == ST_PP_COMPLETED:
