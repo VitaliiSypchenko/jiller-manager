@@ -13,16 +13,18 @@ services:
 
 
 
-#  master:
+  master:
 #    image: jiller/jiller-manager
-#    command: ./run.sh
-#    volumes:
-#      - /var/run/docker.sock:/tmp/docker.sock:ro
-#      - /usr/bin/docker:/usr/bin/docker
-#    environment:
-#      - VIRTUAL_HOST=www.jiller.loc,jiller.loc
-#    expose:
-#      - 8000
+    build: .
+    command: ./run.sh
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /usr/bin/docker:/usr/bin/docker
+    environment:
+      - VIRTUAL_HOST=www.jiller.loc,jiller.loc,f3de2c32.ngrok.io,www.f3de2c32.ngrok.io
+      - DOCKER_HOST=unix:///tmp/docker.sock
+    expose:
+      - 8000
  
 
 

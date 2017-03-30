@@ -6,7 +6,7 @@ python manage.py makemigrations
 python manage.py migrate
 
 # load fixutres
-#su -m myuser -c "python manage.py loaddata project/fixtures/init_data.json"
+#su -m myuser -c "python manage.py loaddata project/fixtures/init_data1.json"
 
 # Collect static
 python manage.py collectstatic --noinput

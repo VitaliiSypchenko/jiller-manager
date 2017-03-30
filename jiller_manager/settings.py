@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -25,7 +26,7 @@ SECRET_KEY = '$hslqb$o(_e#nx&97%w*hbayes@a04^7p627ap137o^so=!6hs'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['a17f1cd2.ngrok.io', '127.0.0.1', 'localhost', '.jiller.loc']
+ALLOWED_HOSTS = ['.ngrok.io', '127.0.0.1', 'localhost', '.jiller.loc']
 
 # Application definition
 
